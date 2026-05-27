@@ -1,12 +1,436 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>김주영 포트폴리오</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>김주영 Portfolio</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
+      color: #1f2937;
+      background: #fafafa;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 40px, 960px);
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid #e5e7eb;
+      background: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    .nav-links a:hover {
+      color: #111827;
+    }
+
+    .hero {
+      padding: 96px 0 72px;
+    }
+
+    .hero .label {
+      font-size: 14px;
+      color: #2563eb;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 64px);
+      line-height: 1.15;
+      letter-spacing: -0.06em;
+      margin-bottom: 22px;
+      color: #111827;
+    }
+
+    .hero p {
+      max-width: 680px;
+      font-size: 18px;
+      color: #4b5563;
+    }
+
+    .hero-buttons {
+      margin-top: 34px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      transition: 0.2s;
+    }
+
+    .btn.primary {
+      background: #111827;
+      color: #ffffff;
+      border-color: #111827;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    section {
+      padding: 72px 0;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .section-title {
+      margin-bottom: 32px;
+    }
+
+    .section-title h2 {
+      font-size: 28px;
+      letter-spacing: -0.04em;
+      color: #111827;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #6b7280;
+      font-size: 15px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(17, 24, 39, 0.04);
+    }
+
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827;
+      letter-spacing: -0.03em;
+    }
+
+    .card p {
+      color: #4b5563;
+      font-size: 15px;
+    }
+
+    .skills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      color: #374151;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .projects {
+      display: grid;
+      gap: 22px;
+    }
+
+    .project-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 26px;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      transition: 0.2s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(17, 24, 39, 0.08);
+    }
+
+    .project-card h3 {
+      font-size: 24px;
+      letter-spacing: -0.04em;
+      color: #111827;
+      margin-bottom: 10px;
+    }
+
+    .project-desc {
+      color: #4b5563;
+      font-size: 15px;
+      margin-bottom: 18px;
+      max-width: 680px;
+    }
+
+    .project-meta {
+      display: grid;
+      gap: 8px;
+      margin: 18px 0;
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    .project-meta strong {
+      color: #111827;
+      margin-right: 6px;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .project-number {
+      font-size: 42px;
+      font-weight: 800;
+      color: #e5e7eb;
+      letter-spacing: -0.06em;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact p {
+      color: #4b5563;
+      margin-bottom: 24px;
+    }
+
+    footer {
+      padding: 32px 0;
+      text-align: center;
+      color: #9ca3af;
+      font-size: 13px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 72px 0 56px;
+      }
+
+      .about-grid,
+      .project-card {
+        grid-template-columns: 1fr;
+      }
+
+      .project-number {
+        display: none;
+      }
+
+      section {
+        padding: 56px 0;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <h1>김주영 포트폴리오</h1>
-  <p>AI · RAG · GAN · Backend</p>
+  <header>
+    <nav class="container">
+      <a href="#" class="logo">Jooyoung Kim</a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="label">AI · Data · Web</div>
+        <h1>문제를 구조화하고,<br />데이터로 해결하는 개발자</h1>
+        <p>
+          사용자에게 실질적인 도움을 주는 서비스를 만들기 위해 데이터 처리,
+          AI 모델 활용, 웹 서비스 구현을 함께 고민합니다. 프로젝트를 통해
+          문제를 분석하고 개선하는 과정을 중요하게 생각합니다.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#projects" class="btn primary">프로젝트 보기</a>
+          <a href="#contact" class="btn">연락하기</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-title">
+          <h2>About Me</h2>
+          <p>관심 분야와 사용 기술을 소개합니다.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="card">
+            <h3>Profile</h3>
+            <p>
+              AI와 데이터 기반 서비스를 중심으로 프로젝트를 진행해왔습니다.
+              단순히 기능을 구현하는 것보다 사용자가 이해하기 쉽고 실제로 활용할 수 있는
+              결과물을 만드는 데 관심이 있습니다.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Skills</h3>
+            <div class="skills">
+              <span class="tag">Python</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">Data Analysis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-title">
+          <h2>Projects</h2>
+          <p>주요 프로젝트 및 연구 경험입니다.</p>
+        </div>
+
+        <div class="projects">
+          <article class="project-card">
+            <div>
+              <h3>IPLANNER</h3>
+              <p class="project-desc">
+                사용자의 일정과 계획을 효율적으로 관리할 수 있도록 설계한
+                일정 관리 서비스입니다. 사용자의 편의성과 정보 구조를 고려하여
+                기능 흐름과 화면 구성을 설계했습니다.
+              </p>
+
+              <div class="project-meta">
+                <div><strong>Type</strong> Web Service Project</div>
+                <div><strong>Role</strong> 기획, 데이터 구조 설계, 기능 구현</div>
+                <div><strong>Focus</strong> 일정 관리, 사용자 경험, 데이터 흐름</div>
+              </div>
+
+              <div class="project-tags">
+                <span class="tag">Web</span>
+                <span class="tag">Planning</span>
+                <span class="tag">Database</span>
+                <span class="tag">UX</span>
+              </div>
+            </div>
+
+            <div class="project-number">01</div>
+          </article>
+
+          <article class="project-card">
+            <div>
+              <h3>이미지 노이즈 복원 연구</h3>
+              <p class="project-desc">
+                UNet과 GAN 기반 구조를 활용하여 노이즈가 포함된 이미지를 복원하는
+                실험을 진행했습니다. 다양한 노이즈 조건과 손실 함수 구성을 비교하며
+                이미지 복원 성능 향상을 목표로 연구를 수행했습니다.
+              </p>
+
+              <div class="project-meta">
+                <div><strong>Type</strong> Research Paper</div>
+                <div><strong>Role</strong> 모델 학습, 실험 설계, 결과 분석</div>
+                <div><strong>Focus</strong> Image Restoration, Denoising, GAN</div>
+              </div>
+
+              <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">PyTorch</span>
+                <span class="tag">UNet</span>
+                <span class="tag">GAN</span>
+                <span class="tag">LPIPS</span>
+                <span class="tag">PSNR</span>
+                <span class="tag">SSIM</span>
+              </div>
+            </div>
+
+            <div class="project-number">02</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact">
+        <div class="section-title">
+          <h2>Contact</h2>
+          <p>프로젝트와 협업에 대해 편하게 연락주세요.</p>
+        </div>
+
+        <a href="mailto:annajy1425@gmail.com" class="btn primary">
+          annajy1425@gmail.com
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Jooyoung Kim. All rights reserved.
+  </footer>
 </body>
 </html>
